@@ -22,19 +22,25 @@ app.use(cookieParser());
 const verifyUser = (req, res, next) => {
   const token = req.cookies.token;
   if (!token) {
-    return res.json("The token was not aviailable");
+    return res.json("The token was not available");
   } else {
     jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
       if (err) {
         return res.json("The token is invalid");
       }
+      req.user = user; // Attach the user to the request object
       next();
     });
   }
 };
 
 app.get("/home", verifyUser, (req, res) => {
-  return res.json("Success");
+  return res.json({ message: "Success", email: req.user.email });
+});
+
+app.post("/logout", (req, res) => {
+  res.clearCookie("token");
+  res.json("Logged out successfully");
 });
 
 app.post("/login", (req, res) => {
@@ -52,7 +58,7 @@ app.post("/login", (req, res) => {
           res.cookie("token", token);
           res.json("Success");
         } else {
-          return res.json("the password is incorrrect");
+          return res.json("The password is incorrect");
         }
       });
     } else {
@@ -71,6 +77,36 @@ app.post("/register", (req, res) => {
         .catch((err) => res.json(err));
     })
     .catch((err) => console.log(err.message));
+});
+
+app.post("/save-text", verifyUser, (req, res) => {
+  const { text } = req.body;
+
+  UserModel.findOneAndUpdate(
+    { email: req.user.email },
+    { $push: { texts: text } },
+    { new: true }
+  )
+    .then((user) => {
+      if (user) {
+        res.json(user.texts);
+      } else {
+        res.json("User not found");
+      }
+    })
+    .catch((err) => res.json(err));
+});
+
+app.get("/get-texts", verifyUser, (req, res) => {
+  UserModel.findOne({ email: req.user.email })
+    .then((user) => {
+      if (user) {
+        res.json(user.texts);
+      } else {
+        res.json("User not found");
+      }
+    })
+    .catch((err) => res.json(err));
 });
 
 mongoose
