@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+const apiUrl = process.env.Backend_URL;
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -13,7 +14,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5001/login", { email, password })
+      .post(`${apiUrl}/login`, { email, password })
       .then((result) => {
         console.log(result);
         if (result.data === "Success") {
