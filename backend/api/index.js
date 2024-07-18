@@ -1,12 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const UserModel = require("./models/User");
+const UserModel = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 
-require("dotenv").config(); // Load environment variables
+require("dotenv").config({ path: "api/.env" }); // Load environment variables
 
 const app = express();
 app.use(express.json());
