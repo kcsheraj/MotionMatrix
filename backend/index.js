@@ -36,6 +36,10 @@ const verifyUser = (req, res, next) => {
   }
 };
 
+app.get("/", (req, res) => {
+  res.json("Welcome to the Motion Matrix API");
+});
+
 app.get("/home", verifyUser, (req, res) => {
   return res.json({ message: "Success", email: req.user.email });
 });
