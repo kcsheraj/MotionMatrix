@@ -12,7 +12,9 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://localhost:5173"],
+    origin: [
+      "https://vercel.com/kcsherajs-projects/motion-matrix-backend/3dj6F1vXjqfv7Z38JhiS6LEpJG9G",
+    ],
     methods: ["GET", "POST"],
     credentials: true,
   })
