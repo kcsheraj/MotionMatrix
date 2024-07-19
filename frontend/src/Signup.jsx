@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-const apiUrl = process.env.Backend_URL;
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -13,7 +12,11 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(`${apiUrl}/register`, { name, email, password })
+      .post(`${process.env.REACT_APP_BACKEND_URL}/register`, {
+        name,
+        email,
+        password,
+      })
       .then((result) => {
         console.log(result);
         navigate("/login");

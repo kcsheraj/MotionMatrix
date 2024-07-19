@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-const apiUrl = process.env.Backend_URL;
 
 const Home = () => {
   const [text, setText] = useState("");
@@ -13,7 +12,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get(`${apiUrl}/home`)
+      .get(`${process.env.REACT_APP_BACKEND_URL}/home`)
       .then((result) => {
         console.log(result);
         if (result.data.message !== "Success") {
@@ -29,7 +28,7 @@ const Home = () => {
 
     // Fetch the texts for the logged-in user
     axios
-      .get(`${apiUrl}/get-texts`)
+      .get(`${process.env.REACT_APP_BACKEND_URL}/get-texts`)
       .then((result) => {
         setTexts(result.data);
       })
@@ -39,7 +38,7 @@ const Home = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(`${apiUrl}/save-text`, { text })
+      .post(`${process.env.REACT_APP_BACKEND_URL}/save-text`, { text })
       .then((result) => {
         setTexts(result.data);
         setText("");
@@ -49,7 +48,7 @@ const Home = () => {
 
   const handleLogout = () => {
     axios
-      .post(`${apiUrl}/logout`)
+      .post(`${process.env.REACT_APP_BACKEND_URL}/logout`)
       .then((result) => {
         console.log(result.data);
         navigate("/login");
