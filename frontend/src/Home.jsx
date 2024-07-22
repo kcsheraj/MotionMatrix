@@ -12,7 +12,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_BACKEND_URL}/home`)
+      .get(`${import.meta.env.VITE_APP_BACKEND_URL}/home`)
       .then((result) => {
         console.log(result);
         if (result.data.message !== "Success") {
@@ -28,7 +28,7 @@ const Home = () => {
 
     // Fetch the texts for the logged-in user
     axios
-      .get(`${process.env.REACT_APP_BACKEND_URL}/get-texts`)
+      .get(`${import.meta.env.VITE_APP_BACKEND_URL}/get-texts`)
       .then((result) => {
         setTexts(result.data);
       })
@@ -38,7 +38,7 @@ const Home = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(`${process.env.REACT_APP_BACKEND_URL}/save-text`, { text })
+      .post(`${import.meta.env.VITE_APP_BACKEND_URL}/save-text`, { text })
       .then((result) => {
         setTexts(result.data);
         setText("");
@@ -48,7 +48,7 @@ const Home = () => {
 
   const handleLogout = () => {
     axios
-      .post(`${process.env.REACT_APP_BACKEND_URL}/logout`)
+      .post(`${import.meta.env.VITE_APP_BACKEND_URL}/logout`)
       .then((result) => {
         console.log(result.data);
         navigate("/login");

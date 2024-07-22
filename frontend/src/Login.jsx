@@ -13,7 +13,10 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(`${process.env.REACT_APP_BACKEND_URL}/login`, { email, password })
+      .post(`${import.meta.env.VITE_APP_BACKEND_URL}/login`, {
+        email,
+        password,
+      })
       .then((result) => {
         console.log(result);
         if (result.data === "Success") {

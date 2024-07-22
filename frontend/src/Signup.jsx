@@ -12,7 +12,7 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(`${process.env.REACT_APP_BACKEND_URL}/register`, {
+      .post(`${import.meta.env.VITE_APP_BACKEND_URL}/register`, {
         name,
         email,
         password,
