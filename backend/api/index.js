@@ -12,9 +12,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: [
-      "https://vercel.com/kcsherajs-projects/motion-matrix-backend/3dj6F1vXjqfv7Z38JhiS6LEpJG9G",
-    ],
+    origin: ["https://motion-matrix-frontend.vercel.app/"],
     methods: ["GET", "POST"],
     credentials: true,
   })
