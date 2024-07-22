@@ -12,11 +12,12 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["https://motion-matrix-frontend.vercel.app/"],
-    methods: ["GET", "POST"],
-    credentials: true,
+    origin: "https://motion-matrix-frontend.vercel.app/", // replace with your actual frontend URL
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true, // if you need to handle cookies
   })
 );
+
 app.use(cookieParser());
 
 const verifyUser = (req, res, next) => {
