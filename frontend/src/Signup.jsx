@@ -21,7 +21,7 @@ const Signup = () => {
       })
       .then((result) => {
         console.log(result);
-        navigate("/login");
+        navigate("/");
       })
       .catch((err) => console.log(err));
   };
@@ -80,7 +80,7 @@ const Signup = () => {
 
         <p>Already Have an Account</p>
         <Link
-          to="/login"
+          to="/"
           className="btn btn-default border w-100 bg-light rounded-0 text-decoration-none"
         >
           Login

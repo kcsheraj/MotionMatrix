@@ -16,14 +16,14 @@ const Home = () => {
       .then((result) => {
         console.log(result);
         if (result.data.message !== "Success") {
-          navigate("/login");
+          navigate("/");
         } else {
           setLoading(false); // Set loading to false once authenticated
         }
       })
       .catch((err) => {
         console.log(err);
-        navigate("/login");
+        navigate("/");
       });
 
     // Fetch the texts for the logged-in user
@@ -51,7 +51,7 @@ const Home = () => {
       .post(`${import.meta.env.VITE_APP_BACKEND_URL}/logout`)
       .then((result) => {
         console.log(result.data);
-        navigate("/login");
+        navigate("/");
       })
       .catch((err) => console.log(err));
   };
