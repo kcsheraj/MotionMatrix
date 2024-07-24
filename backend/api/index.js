@@ -65,7 +65,10 @@ app.post("/login", (req, res) => {
             process.env.JWT_SECRET,
             { expiresIn: "1h" }
           );
-          res.cookie("token", token, { httpOnly: true });
+          res.cookie("token", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production", // Ensure secure is set in production
+          });
           res.json("Success");
         } else {
           return res.json("The password is incorrect");
