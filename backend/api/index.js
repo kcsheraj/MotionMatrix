@@ -12,13 +12,28 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["https://motion-matrix-frontend-kcsherajs-projects.vercel.app/"], // replace with your actual frontend URL
-    methods: ["GET,HEAD,PUT,PATCH,POST,DELETE"],
+    origin: "https://motion-matrix-frontend-kcsherajs-projects.vercel.app", // replace with your actual frontend URL
+    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
     credentials: true, // if you need to handle cookies
   })
 );
 
 app.use(cookieParser());
+
+// Additional CORS headers
+app.use((req, res, next) => {
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://motion-matrix-frontend-kcsherajs-projects.vercel.app"
+  );
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  next();
+});
 
 const verifyUser = (req, res, next) => {
   const token = req.cookies.token;
