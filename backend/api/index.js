@@ -11,14 +11,14 @@ require("dotenv").config({ path: "api/.env" }); // Load environment variables
 const app = express();
 app.use(express.json());
 
-// Allow all origins
-app.use(cors());
-// Allow specific origin(s)
-app.use(
-  cors({
-    origin: "https://motion-matrix-frontend.vercel.app/",
-  })
-);
+// // Allow all origins
+// app.use(cors());
+// // Allow specific origin(s)
+// app.use(
+//   cors({
+//     origin: "https://motion-matrix-frontend.vercel.app/",
+//   })
+// );
 
 app.use(cookieParser());
 
