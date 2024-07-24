@@ -75,6 +75,7 @@ app.post("/login", (req, res) => {
           res.cookie("token", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production", // Ensure secure is set in production
+            sameSite: "None", // Required for cross-site cookies
           });
           res.json("Success");
         } else {
