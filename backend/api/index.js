@@ -11,14 +11,13 @@ require("dotenv").config({ path: "api/.env" }); // Load environment variables
 const app = express();
 app.use(express.json());
 
-// Allow all origins
-app.use(cors());
-// // Allow specific origin(s)
-// app.use(
-//   cors({
-//     origin: "https://motion-matrix-frontend.vercel.app/",
-//   })
-// );
+// Allow specific origin(s) and enable credentials
+app.use(
+  cors({
+    origin: "https://motion-matrix-frontend.vercel.app", // Specify the front-end domain
+    credentials: true, // Enable credentials
+  })
+);
 
 app.use(cookieParser());
 
@@ -66,7 +65,7 @@ app.post("/login", (req, res) => {
             process.env.JWT_SECRET,
             { expiresIn: "1h" }
           );
-          res.cookie("token", token);
+          res.cookie("token", token, { httpOnly: true });
           res.json("Success");
         } else {
           return res.json("The password is incorrect");
