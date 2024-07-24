@@ -11,6 +11,7 @@ const Login = () => {
   axios.defaults.withCredentials = true;
 
   const handleSubmit = (e) => {
+    console.log(`${import.meta.env.VITE_APP_BACKEND_URL}/login`);
     e.preventDefault();
     axios
       .post(`${import.meta.env.VITE_APP_BACKEND_URL}/login`, {
