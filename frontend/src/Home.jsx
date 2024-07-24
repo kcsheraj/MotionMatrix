@@ -8,6 +8,8 @@ const Home = () => {
   const [loading, setLoading] = useState(true); // Add loading state
   const navigate = useNavigate();
 
+  axios.defaults.withCredentials = true;
+
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_APP_BACKEND_URL}/home`)
