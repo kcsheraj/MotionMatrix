@@ -13,7 +13,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(`${import.meta.env.VITE_APP_BACKEND_URL}/`, {
+      .post(`${import.meta.env.VITE_APP_BACKEND_URL}/login`, {
         email,
         password,
       })
