@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://motion-matrix-frontend-kcsherajs-projects.vercel.app", // replace with your actual frontend URL
+    origin: "https://motion-matrix-frontend.vercel.app", // replace with your actual frontend URL
     methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
     credentials: true, // if you need to handle cookies
   })
@@ -24,7 +24,7 @@ app.use(cookieParser());
 app.use((req, res, next) => {
   res.header(
     "Access-Control-Allow-Origin",
-    "https://motion-matrix-frontend-kcsherajs-projects.vercel.app"
+    "https://motion-matrix-frontend.vercel.app"
   );
   res.header("Access-Control-Allow-Credentials", "true");
   res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
