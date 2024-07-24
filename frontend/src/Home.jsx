@@ -8,7 +8,7 @@ const Home = () => {
   const [loading, setLoading] = useState(true); // Add loading state
   const navigate = useNavigate();
 
-  axios.defaults.withCredentials = true;
+  axios.defaults.withCredentials = false;
 
   useEffect(() => {
     axios
