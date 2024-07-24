@@ -22,7 +22,7 @@ app.use(
         callback(new Error("Not allowed by CORS"));
       }
     },
-    credentials: false, // Enable credentials
+    credentials: true, // Enable credentials
   })
 );
 
