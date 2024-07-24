@@ -11,10 +11,17 @@ require("dotenv").config({ path: "api/.env" }); // Load environment variables
 const app = express();
 app.use(express.json());
 
-// Allow specific origin(s) and enable credentials
+const allowedOrigins = ["https://motion-matrix-frontend.vercel.app"];
+
 app.use(
   cors({
-    origin: "https://motion-matrix-frontend.vercel.app", // Specify the front-end domain
+    origin: function (origin, callback) {
+      if (allowedOrigins.includes(origin) || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true, // Enable credentials
   })
 );
